@@ -1,0 +1,30 @@
+networks:
+  clickhouse-ci:
+    driver: bridge
+
+services:
+  clickhouse-keeper:
+    build:
+      context: .
+      dockerfile: clickhouse-keeper.dockerfile
+    healthcheck:
+      test: [ "CMD", "bash", "-c", "clickhouse-keeper client -p2181 -q 'ruok' | grep imok" ]
+      interval: 10s
+    ports:
+      - "2181:2181"
+    networks:
+      - clickhouse-ci
+
+  clickhouse-server:
+    build:
+      context: .
+      dockerfile: clickhouse-server.dockerfile
+    healthcheck:
+      test: [ "CMD", "clickhouse-client", "-q", "SELECT 1" ]
+      interval: 10s
+    depends_on:
+      - clickhouse-keeper
+    ports:
+      - "8123:8123"
+    networks:
+      - clickhouse-ci

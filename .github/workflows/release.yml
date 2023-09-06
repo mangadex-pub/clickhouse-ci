@@ -60,5 +60,4 @@ jobs:
           tags: "${{ steps.meta.outputs.tags }}"
           labels: "${{ steps.meta.outputs.labels }}"
           build-args: |
-            CLICKHOUSE_KEEPER_VERSION=${{ matrix.clickhouse_keeper_version }}
-            CLICKHOUSE_SERVER_VERSION=${{ matrix.clickhouse_server_version }}
+            UPSTREAM_VERSION=${{ matrix.upstream_version }}

@@ -19,7 +19,10 @@ jobs:
     strategy:
       matrix:
         include:
-          - clickhouse_version: 23.5
+          - build: clickhouse-keeper
+            clickhouse_server_version: 23
+          - build: clickhouse-server
+            clickhouse_server_version: 23.5
 
     steps:
       - name: Checkout repository
@@ -53,8 +56,9 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-          target: ${{ matrix.target }}
+          file: "${{ matrix.build }}.dockerfile"
+          tags: "${{ steps.meta.outputs.tags }}"
+          labels: "${{ steps.meta.outputs.labels }}"
           build-args: |
-            CLICKHOUSE_VERSION=${{ matrix.clickhouse_version }}
+            CLICKHOUSE_KEEPER_VERSION=${{ matrix.clickhouse_keeper_version }}
+            CLICKHOUSE_SERVER_VERSION=${{ matrix.clickhouse_server_version }}

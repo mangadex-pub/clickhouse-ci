@@ -20,9 +20,9 @@ jobs:
       matrix:
         include:
           - build: clickhouse-keeper
-            clickhouse_server_version: 23
+            upstream_version: 23
           - build: clickhouse-server
-            clickhouse_server_version: 23.5
+            upstream_version: 23.5
 
     steps:
       - name: Checkout repository
@@ -47,9 +47,9 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=sha,event=push,enable=true,prefix=branch-{{ branch }}-${{ matrix.clickhouse_version }}-git-,format=short
-            type=sha,event=push,enable={{ is_default_branch }},prefix=${{ matrix.clickhouse_version }}-git-,format=short
-            type=raw,event=push,enable={{ is_default_branch }},value=${{ matrix.clickhouse_version }}
+            type=sha,event=push,enable=true,prefix=branch-{{ branch }}-${{ matrix.build }}-${{ matrix.upstream_version }}-git-,format=short
+            type=sha,event=push,enable={{ is_default_branch }},prefix=${{ matrix.build }}-${{ matrix.upstream_version }}-git-,format=short
+            type=raw,event=push,enable={{ is_default_branch }},value=${{ matrix.build }}-${{ matrix.upstream_version }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v4

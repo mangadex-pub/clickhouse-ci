@@ -44,9 +44,9 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=sha,event=push,enable=true,prefix=branch-{{ branch }}-${{ matrix.tag }}-git-,format=short
-            type=sha,event=push,enable={{ is_default_branch }},value=${{ matrix.tag }}-git-,format=short
-            type=raw,event=push,enable={{ is_default_branch }},value=${{ matrix.tag }}
+            type=sha,event=push,enable=true,prefix=branch-{{ branch }}-${{ matrix.clickhouse_version }}-git-,format=short
+            type=sha,event=push,enable={{ is_default_branch }},value=${{ matrix.clickhouse_version }}-git-,format=short
+            type=raw,event=push,enable={{ is_default_branch }},value=${{ matrix.clickhouse_version }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v4

@@ -1,4 +1,6 @@
 <clickhouse>
+  <listen_host>0.0.0.0</listen_host>
+
   <logger>
     <level>information</level>
     <log remove="remove" />
@@ -6,9 +8,15 @@
     <console>true</console>
   </logger>
 
+  <max_connections>4096</max_connections>
+
   <keeper_server>
     <tcp_port>2181</tcp_port>
     <server_id>1</server_id>
+
+    <log_storage_path>/var/lib/clickhouse/coordination/logs</log_storage_path>
+    <snapshot_storage_path>/var/lib/clickhouse/coordination/snapshots</snapshot_storage_path>
+
     <coordination_settings>
       <raft_logs_level>information</raft_logs_level>
     </coordination_settings>

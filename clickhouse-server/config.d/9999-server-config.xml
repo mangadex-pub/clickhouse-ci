@@ -1,5 +1,6 @@
 <clickhouse>
-  <!-- Server logging config -->
+  <listen_host>0.0.0.0</listen_host>
+
   <logger>
     <level>debug</level>
     <console>true</console>
@@ -7,7 +8,6 @@
     <errorlog remove="remove" />
   </logger>
 
-  <!-- Add aggressive expiry for query logs -->
   <query_log>
     <database>system</database>
     <table>query_log</table>
@@ -16,7 +16,6 @@
     <flush_interval_milliseconds>7500</flush_interval_milliseconds>
   </query_log>
 
-  <!-- Remove system log tables -->
   <asynchronous_metric_log remove="1" />
   <metric_log remove="1" />
   <opentelemetry_span_log remove="1" />
@@ -26,7 +25,6 @@
   <session_log remove="1" />
   <trace_log remove="1" />
 
-  <!-- Replica identity information -->
   <macros>
     <cluster>main</cluster>
     <shard>1</shard>
@@ -35,9 +33,7 @@
   <default_replica_path>/clickhouse/tables/{database}/{uuid}/{shard}</default_replica_path>
   <default_replica_name>{replica}</default_replica_name>
 
-  <!-- Cluster information (for distributed DDL) -->
   <remote_servers>
-    <!-- matches "cluster" macro, defines a single-node cluster for DDL purposes -->
     <main>
       <shard>
         <replica>
@@ -48,7 +44,6 @@
     </main>
   </remote_servers>
 
-  <!-- Clickhouse Keeper for replication -->
   <zookeeper>
     <node>
       <host>clickhouse-keeper</host>

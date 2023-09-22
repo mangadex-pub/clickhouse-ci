@@ -1,6 +1,8 @@
 <clickhouse>
   <profiles>
     <default>
+      <!-- Allow replicated database engine, for automatic on-cluster on queries -->
+      <allow_experimental_database_replicated>true</allow_experimental_database_replicated>
       <!-- Disable query thread-specific logging (wtf) -->
       <log_query_threads>0</log_query_threads>
     </default>

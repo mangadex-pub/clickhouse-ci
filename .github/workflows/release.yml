@@ -20,9 +20,9 @@ jobs:
       matrix:
         include:
           - build: clickhouse-keeper
-            upstream_version: 23
+            upstream_version: 23.12
           - build: clickhouse-server
-            upstream_version: 23.5
+            upstream_version: 23.12
 
     steps:
       - name: Checkout repository

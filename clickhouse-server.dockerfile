@@ -1,4 +1,4 @@
-ARG UPSTREAM_VERSION="23.12"
+ARG UPSTREAM_VERSION="24.9"
 FROM clickhouse/clickhouse-server:${UPSTREAM_VERSION}
 
 COPY clickhouse-server/config.d/9999-server-config.xml /etc/clickhouse-server/config.d/9999-server-config.xml

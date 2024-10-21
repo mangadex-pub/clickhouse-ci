@@ -4,7 +4,7 @@
       <!-- Allow replicated database engine, for automatic on-cluster on queries -->
       <allow_experimental_database_replicated>true</allow_experimental_database_replicated>
       <database_replicated_allow_only_replicated_engine>true</database_replicated_allow_only_replicated_engine>
-      <database_replicated_allow_replicated_engine_arguments>false</database_replicated_allow_replicated_engine_arguments>
+      <database_replicated_allow_replicated_engine_arguments>0</database_replicated_allow_replicated_engine_arguments>
       <!-- Disable query thread-specific logging (wtf) -->
       <log_query_threads>0</log_query_threads>
     </default>
